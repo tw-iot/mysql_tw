@@ -10,38 +10,38 @@ import (
 var MysqlTw *sql.DB
 
 type MysqlInfo struct {
-	Network  string
-	Host     string
-	Port     int
-	Username string
-	Password string
-	Database string
-	Charset  string
-	Other    string
-	MaxOpenConns int
-	MaxIdleConns int
+	Network         string
+	Host            string
+	Port            int
+	Username        string
+	Password        string
+	Database        string
+	Charset         string
+	Other           string
+	MaxOpenConns    int
+	MaxIdleConns    int
 	ConnMaxLifetime time.Duration
 }
 
 func NewMysqlInfo(host, username, password, database string, port int) MysqlInfo {
 	return MysqlInfo{
-		Network:  "tcp",
-		Host:     host,
-		Port:     port,
-		Username: username,
-		Password: password,
-		Database: database,
-		Charset:  "utf8",
-		Other:    "loc=Asia%2FShanghai",
-		MaxOpenConns: 100,
-		MaxIdleConns: 20,
+		Network:         "tcp",
+		Host:            host,
+		Port:            port,
+		Username:        username,
+		Password:        password,
+		Database:        database,
+		Charset:         "utf8",
+		Other:           "loc=Asia%2FShanghai",
+		MaxOpenConns:    100,
+		MaxIdleConns:    20,
 		ConnMaxLifetime: 100 * time.Second,
 	}
 }
 
 func MysqlInit(mysqlInfo *MysqlInfo) *sql.DB {
 	dbDSN := fmt.Sprintf("%s:%s@%s(%s:%s)/%s?charset=%s&%s", mysqlInfo.Username, mysqlInfo.Password,
-		mysqlInfo.Network, mysqlInfo.Host, mysqlInfo.Port, mysqlInfo.Database, mysqlInfo.Charset)
+		mysqlInfo.Network, mysqlInfo.Host, mysqlInfo.Port, mysqlInfo.Database, mysqlInfo.Charset, mysqlInfo.Other)
 
 	var mysqlDbErr error
 	MysqlTw, mysqlDbErr = sql.Open("mysql", dbDSN)
