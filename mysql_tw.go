@@ -40,7 +40,7 @@ func NewMysqlInfo(host, username, password, database string, port int) MysqlInfo
 }
 
 func MysqlInit(mysqlInfo *MysqlInfo) *sql.DB {
-	dbDSN := fmt.Sprintf("%s:%s@%s(%s:%s)/%s?charset=%s&%s", mysqlInfo.Username, mysqlInfo.Password,
+	dbDSN := fmt.Sprintf("%s:%s@%s(%s:%d)/%s?charset=%s&%s", mysqlInfo.Username, mysqlInfo.Password,
 		mysqlInfo.Network, mysqlInfo.Host, mysqlInfo.Port, mysqlInfo.Database, mysqlInfo.Charset, mysqlInfo.Other)
 	fmt.Println("mysql info:", dbDSN)
 	var mysqlDbErr error
