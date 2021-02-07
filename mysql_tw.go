@@ -42,12 +42,11 @@ func NewMysqlInfo(host, username, password, database string, port int) MysqlInfo
 func MysqlInit(mysqlInfo *MysqlInfo) *sql.DB {
 	dbDSN := fmt.Sprintf("%s:%s@%s(%s:%s)/%s?charset=%s&%s", mysqlInfo.Username, mysqlInfo.Password,
 		mysqlInfo.Network, mysqlInfo.Host, mysqlInfo.Port, mysqlInfo.Database, mysqlInfo.Charset, mysqlInfo.Other)
-
+	fmt.Println("mysql info:", dbDSN)
 	var mysqlDbErr error
 	MysqlTw, mysqlDbErr = sql.Open("mysql", dbDSN)
 	if mysqlDbErr != nil {
 		// 打开连接失败
-		fmt.Println("open mysql failed: ", dbDSN)
 		panic("Incorrect data source configuration: " + mysqlDbErr.Error())
 	}
 
