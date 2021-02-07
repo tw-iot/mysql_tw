@@ -32,7 +32,7 @@ func NewMysqlInfo(host, username, password, database string, port int) MysqlInfo
 		Password:        password,
 		Database:        database,
 		Charset:         "utf8",
-		Other:           "loc=Asia%2FShanghai",
+		Other:           "loc=Asia%2FShanghai&parseTime=true",
 		MaxOpenConns:    100,
 		MaxIdleConns:    20,
 		ConnMaxLifetime: 100 * time.Second,
