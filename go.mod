@@ -1,4 +1,4 @@
-module mysql_tw
+module github.com/tw-iot/mysql_tw
 
 go 1.15
 
